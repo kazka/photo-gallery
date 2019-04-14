@@ -1,10 +1,10 @@
 import React from 'react'
 
 const ImageItem = ({ image }) => {
+    const style = { backgroundImage: 'url(' + image.thumbnail + ')' }
+
     return (
-        <div className="list-item Image-item">
-        <ion-icon name="image"></ion-icon>
-         {image.name}
+        <div className="list-item Image-item" style={style}>
         </div>
     )
 }
