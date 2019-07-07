@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Breadcrumb = ({ path, handleBreadcrumbClick }) => {
+const Breadcrumb = ({ path, selectedImageName, handleBreadcrumbClick }) => {
     const getPathStart = (index) => {
         let pathStart = ''
         for (let i = 0; i < index; i++) {
@@ -23,13 +23,11 @@ const Breadcrumb = ({ path, handleBreadcrumbClick }) => {
         })
     })
 
-    console.log('path items', pathsWithFullPaths)
-
     const breadcrumb = pathsWithFullPaths.map(item => {
         return (
             <div className="breadcrumb-item" key={item.name}>
                 <span>&nbsp;></span>
-                <a onClick={() => handleBreadcrumbClick(item.path)}> {item.name} </a>
+                <button onClick={() => handleBreadcrumbClick(item.path)}> {item.name} </button>
             </div>
         )
     })
@@ -37,9 +35,14 @@ const Breadcrumb = ({ path, handleBreadcrumbClick }) => {
     return (
         <div className="breadcrumb">
             <div className="breadcrumb-item">
-                <a onClick={() => handleBreadcrumbClick('')}>Index</a>
+                <button onClick={() => handleBreadcrumbClick('')}>All</button>
             </div>  
             {breadcrumb}
+            {selectedImageName && 
+                <div className="breadcrumb-item breadcrumb-image-name">
+                    ><button>{selectedImageName}</button>
+                </div>
+            }
         </div>
     )
 }

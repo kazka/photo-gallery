@@ -12,7 +12,6 @@ const getIndex = () => {
 }
 
 const getPath = (path) => {
-  console.log(baseUrl + path)
   const request = axios.request({
     url: baseUrl + path,
     method: 'get',

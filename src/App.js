@@ -13,7 +13,7 @@ class App extends Component {
       <Router>
         <div className="app">
           <header className="app-header">
-          <ion-icon name="images"></ion-icon>
+            <ion-icon name="images"></ion-icon>
             <h1>Photo Gallery</h1>
           </header>
 
