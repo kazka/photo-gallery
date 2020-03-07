@@ -1,6 +1,7 @@
 import React from 'react'
+import {BrowserRouter as Link} from 'react-router-dom'
 
-const Breadcrumb = ({ path, selectedImageName, handleBreadcrumbClick }) => {
+const Breadcrumb = ({ path, selectedImageName, handleClick }) => {
     const getPathStart = (index) => {
         let pathStart = ''
         for (let i = 0; i < index; i++) {
@@ -23,19 +24,19 @@ const Breadcrumb = ({ path, selectedImageName, handleBreadcrumbClick }) => {
         })
     })
 
-    const breadcrumb = pathsWithFullPaths.map(item => {
-        return (
-            <div className="breadcrumb-item" key={item.name}>
-                <span>&nbsp;></span>
-                <button onClick={() => handleBreadcrumbClick(item.path)}> {item.name} </button>
-            </div>
-        )
-    })
+    const breadcrumb = pathsWithFullPaths.map(item => (
+        <div className="breadcrumb-item" key={item.name}>
+            <span>&nbsp;></span>
+            <button onClick={() => handleClick(item.path)}> {item.name} </button>
+        </div>
+    ))
 
     return (
         <div className="breadcrumb">
             <div className="breadcrumb-item">
-                <button onClick={() => handleBreadcrumbClick('')}>All</button>
+                <Link to={'/'}>
+                    <button onClick={() => handleClick('')}>All</button>
+                </Link>
             </div>  
             {breadcrumb}
             {selectedImageName && 
