@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import List from './classes/List'
+import React from 'react'
+import Gallery from './classes/Gallery'
 //import logo from './logo.svg';
 
 const App = () => {
@@ -11,7 +10,7 @@ const App = () => {
         <h1>Photo Gallery</h1>
       </header>
 
-      <List />
+      <Gallery />
     </div>
   )
 }

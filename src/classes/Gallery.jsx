@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import itemService from './../services/items'
 import FolderItem from './../components/FolderItem'
 import ImageItem from './../components/ImageItem'
@@ -8,20 +7,42 @@ import Breadcrumb from './../components/Breadcrumb'
 
 const imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i
 
-const List = () => {
-    const [path, setPath] = useState('')
+const Gallery = () => {
+    const [path, setPath] = useState(window.location.pathname.substr(1))
     const [allLoaded, setAllLoaded] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null)
     const [images, setImages] = useState([])
     const [folders, setFolders] = useState([])
 
     useEffect(() => {
+        console.log('path', path)
         getPathItems(path)
+        setUrl(path)
 
         if (!imageReg.test(path)) {
             setSelectedImage(null)
         }
+        window.addEventListener('popstate', back)
+        return () => window.removeEventListener('popstate', back)
     }, [path])
+
+    const back = e => {
+        console.log('back', path, e.state)
+        setPath(e.state.path)
+    }
+
+    const setUrl = pathForUrl => {
+        const newurl = '/' + pathForUrl/*window.location.protocol + '//' +
+                       window.location.host + '/' +
+                       pathForUrl*/
+     
+                       console.log(window.history.state.path, newurl)
+        const history = window.history.state
+        if (!history || (history.path !== newurl && '/' + history.path !== newurl)) {
+            console.log('pushing', pathForUrl)
+            window.history.pushState({ path: pathForUrl }, '', newurl)
+        }
+    }
 
     const getPathItems = path => itemService.getPath(path)
         .then(items => {
@@ -57,10 +78,9 @@ const List = () => {
                     {imageItems}            
                 </div>}
                 {selectedImage && <SelectedImage image={selectedImage} />}
-                {/*<Route path={`/:folderPath`} component={FolderItem} />*/}
             </div>                                                                                                                                                                                                  
         </div>
     )
 }
 
-export default List
+export default Gallery

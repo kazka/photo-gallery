@@ -1,5 +1,4 @@
 import React from 'react'
-import {BrowserRouter as Link} from 'react-router-dom'
 
 const Breadcrumb = ({ path, selectedImageName, handleClick }) => {
     const getPathStart = (index) => {
@@ -34,9 +33,7 @@ const Breadcrumb = ({ path, selectedImageName, handleClick }) => {
     return (
         <div className="breadcrumb">
             <div className="breadcrumb-item">
-                <Link to={'/'}>
-                    <button onClick={() => handleClick('')}>All</button>
-                </Link>
+                <button onClick={() => handleClick('')}>All</button>
             </div>  
             {breadcrumb}
             {selectedImageName && 
