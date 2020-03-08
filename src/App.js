@@ -1,5 +1,5 @@
 import React from 'react'
-import Gallery from './classes/Gallery'
+import Gallery from './components/Gallery'
 //import logo from './logo.svg';
 
 const App = () => {

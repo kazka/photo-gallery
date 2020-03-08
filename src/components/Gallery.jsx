@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import itemService from './../services/items'
-import FolderItem from './../components/FolderItem'
-import ImageItem from './../components/ImageItem'
-import SelectedImage from './../components/SelectedImage'
-import Breadcrumb from './../components/Breadcrumb'
+import itemService from '../services/items'
+import FolderItem from './FolderItem'
+import ImageItem from './ImageItem'
+import SelectedImage from './SelectedImage'
+import Breadcrumb from './Breadcrumb'
 
 const imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i
 
