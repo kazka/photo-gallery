@@ -8,7 +8,7 @@ import Breadcrumb from './Breadcrumb'
 const imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i //eslint-disable-line
 
 const Gallery = () => {
-    const [path, setPath] = useState(window.location.pathname.substr(1))
+    const [path, setPath] = useState(window.location.pathname.substr(1).replace(/%20/g, ' '))
     const [allLoaded, setAllLoaded] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null)
     const [images, setImages] = useState([])
@@ -24,10 +24,19 @@ const Gallery = () => {
         if (selectedImage && !imageReg.test(path)) {
             setSelectedImage(null)
         }
-        if (!selectedImage && imageReg.test(path)) {
-            setSelectedImage(images.find(image => image.path === path))
-        }
     }, [path, selectedImage])
+
+    useEffect(() => {
+        // set image when image page opened from url
+        if (!selectedImage && imageReg.test(path)) {
+            if (!images.length) {
+                getPathItems(path.substr(0, path.lastIndexOf('/') + 1))
+            }
+            if (allLoaded) {
+                setSelectedImage(images.find(image => image.path === path))
+            }
+        }
+    }, [images])
 
     useEffect(() => {
         window.addEventListener('popstate', navigateBack)
