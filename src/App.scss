@@ -63,6 +63,10 @@ ion-icon {
         &:focus {
           outline: none;
         }
+
+        @media (max-width: 767px) {
+          font-size: 13px;
+        }
       }
       &.breadcrumb-image-name {
         button {
@@ -115,6 +119,18 @@ ion-icon {
       font-size: 20px;
       ion-icon {
         font-size: 100px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      flex-basis: 33.3333%;
+      height: 30vw;
+      .folder-item-content {
+        font-size: 14px;
+        line-height: 1.2;
+        ion-icon {
+          font-size: 32px;
+        }
       }
     }
   }
