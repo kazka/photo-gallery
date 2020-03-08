@@ -5,7 +5,7 @@ import ImageItem from './ImageItem'
 import SelectedImage from './SelectedImage'
 import Breadcrumb from './Breadcrumb'
 
-const imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i
+const imageReg = /[\/.](gif|jpg|jpeg|tiff|png)$/i //eslint-disable-line
 
 const Gallery = () => {
     const [path, setPath] = useState(window.location.pathname.substr(1))
@@ -83,8 +83,8 @@ const Gallery = () => {
                     : (
                         <div className="list-container">
                             {!allLoaded && (
-                                <div class="loading-container">
-                                    <div class="loading"></div>
+                                <div className="loading-container">
+                                    <div className="loading"></div>
                                 </div>
                             )}
                             {folderItems}

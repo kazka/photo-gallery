@@ -5,11 +5,12 @@ const SelectedImage = ({ image }) => {
 
     return (
         <div className="selected-image">
-            {!isLoaded && <div class="loading"></div>}
+            {!isLoaded && <div className="loading"></div>}
             <img 
                 onLoad={() => setLoaded(true)}
                 src={image.download}
                 className={!isLoaded ? 'hidden' : ''}
+                alt={image.name}
             />
         </div>
     )
