@@ -15,31 +15,34 @@ const Gallery = () => {
     const [folders, setFolders] = useState([])
 
     useEffect(() => {
-        console.log('path', path)
-        getPathItems(path)
+        if (!selectedImage) {
+            getPathItems(path)
+        }
+        
         setUrl(path)
-
-        if (!imageReg.test(path)) {
+        
+        if (selectedImage && !imageReg.test(path)) {
             setSelectedImage(null)
         }
-        window.addEventListener('popstate', back)
-        return () => window.removeEventListener('popstate', back)
-    }, [path])
+        if (!selectedImage && imageReg.test(path)) {
+            setSelectedImage(images.find(image => image.path === path))
+        }
+    }, [path, selectedImage])
 
-    const back = e => {
-        console.log('back', path, e.state)
+    useEffect(() => {
+        window.addEventListener('popstate', navigateBack)
+        return () => window.removeEventListener('popstate', navigateBack)
+    }, [])
+
+    const navigateBack = e => {
         setPath(e.state.path)
     }
 
     const setUrl = pathForUrl => {
-        const newurl = '/' + pathForUrl/*window.location.protocol + '//' +
-                       window.location.host + '/' +
-                       pathForUrl*/
-     
-                       console.log(window.history.state.path, newurl)
+        const newurl = '/' + pathForUrl
         const history = window.history.state
+
         if (!history || (history.path !== newurl && '/' + history.path !== newurl)) {
-            console.log('pushing', pathForUrl)
             window.history.pushState({ path: pathForUrl }, '', newurl)
         }
     }
@@ -56,7 +59,10 @@ const Gallery = () => {
         <FolderItem key={folder.path} folder={folder} handleClick={setPath} />
     ))
     const imageItems = images.map(image => (
-        <ImageItem key={image.path} image={image} handleClick={setSelectedImage} />
+        <ImageItem key={image.path} image={image} handleClick={image => {
+            setSelectedImage(image)
+            setPath(image.path)
+        }} />
     ))
       
     return (
