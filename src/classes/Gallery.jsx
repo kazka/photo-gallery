@@ -77,13 +77,21 @@ const Gallery = () => {
                     }}
                 />
             </div>
-            <div className="list">
-                {!selectedImage && <div className="list-container">
-                    {!allLoaded && 'Loading'}
-                    {folderItems}
-                    {imageItems}            
-                </div>}
-                {selectedImage && <SelectedImage image={selectedImage} />}
+            <div className="gallery">
+                {selectedImage
+                    ? <SelectedImage image={selectedImage} />
+                    : (
+                        <div className="list-container">
+                            {!allLoaded && (
+                                <div class="loading-container">
+                                    <div class="loading"></div>
+                                </div>
+                            )}
+                            {folderItems}
+                            {imageItems}
+                        </div>
+                    )
+                }
             </div>                                                                                                                                                                                                  
         </div>
     )

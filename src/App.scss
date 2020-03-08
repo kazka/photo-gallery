@@ -16,9 +16,10 @@ ion-icon {
 }
 
 .app-header {
-  background-image: url('https://gallery-serverless.s3.eu-north-1.amazonaws.com/Celestial/Misc%20celestial/_1110215.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIATZTSHDMMPO3Q4OZQ%2F20190706%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20190706T123927Z&X-Amz-Expires=900&X-Amz-Security-Token=AgoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmV1LW5vcnRoLTEiRjBEAiALFLsGHV%2FikNd9RKlT388ugCbztAPtNGjSbPlmNpC8OwIgMAyv75G%2FocXJZ6SJq174d6Wx82ieLUylwISs2p%2B4DEQqlgIILBACGgwyNjExNTg4MDQyNDgiDElLQ5ISPEds0hFVWyrzARvHxGghw2mapMO0c%2FzWpg16sJc8lXDMXJhrlL3orcEy30S1xL3iVLPNgLrdrFFXYoPzLpXuAg4HIk8hYcFbVZd02u%2BE7IHaOUYdhkrEU6jo4gosAtQD6RdhfRPgyzKissWfKoGv%2BSEsLTJ1tp0ULPZVtbmyf9ESCXZMZWZMx853%2BWM0CN%2FyQkNbogC2HPFQqPzyUQvAQ16wYPKmCl%2FLAS4of2%2Fds%2BTWGd6d79Gmox0L3xxmlz4MIiHdNjkrtUm%2F1W19azVgBDBpZVuaowIX3XxoAxowZIj5Ou2zF%2FpQY9GzY6hj0D0sXgS5ywylmkDseu0bGDCV84HpBTq1AdXeaFm0t1oILrTSW%2FZAmosS2VuLGdYm4X%2Bwksek4kxuAMevaVVdKoPE56I2tDYuv15njkylR0Qai%2FDZ9EKtMZjC4%2BtOhI0j5wP5pi95j0jmx9Sst42EBpEvcdo%2FccWukNpCYfx9LiEmfwTrP%2B%2Bp43WcaWAFlkmk%2FOIiK5geSPX8Z4VSagjYagW3TPe5ZuVouReC%2B4naw9kguxXku516VMbft7bpDWxITAccP2HzAB3KC2ikenM%3D&X-Amz-Signature=438bdb213cb165cb1a3909e692c3abdbaf97e62bd59125ff6ec4442e7a45fa94&X-Amz-SignedHeaders=host');
+  /*background-image: url('');
   background-size: 100% auto;
-  background-position: center bottom -100px;
+  background-position: center bottom -100px;*/
+  background-color: $dark;
   height: 10vh;
   display: flex;
   flex-direction: row;
@@ -36,7 +37,7 @@ ion-icon {
   color: $color;
 }
 
-.list {
+.gallery {
   width: 100%;
   margin: 1px auto 20px auto;
 }
@@ -79,6 +80,10 @@ ion-icon {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  .loading-container {
+    flex-basis: 100%;
+  }
 
   .list-item {
     display: flex;
@@ -124,7 +129,7 @@ ion-icon {
   }
 }
 
-#loading {
+.loading {
   display: inline-block;
   width: 50px;
   height: 50px;

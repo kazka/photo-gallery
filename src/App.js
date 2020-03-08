@@ -7,7 +7,7 @@ const App = () => {
     <div className="app">
       <header className="app-header">
         <ion-icon name="images"></ion-icon>
-        <h1>Photo Gallery</h1>
+        <h1>Topias.pics</h1>
       </header>
 
       <Gallery />

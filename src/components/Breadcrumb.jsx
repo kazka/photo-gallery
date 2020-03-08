@@ -9,18 +9,12 @@ const Breadcrumb = ({ path, selectedImageName, handleClick }) => {
         return pathStart
     }
 
-    let pathsWithFullPaths = []
-
     let pathItems = path.split('/')
     pathItems = pathItems.slice(0, pathItems.length - 1)
 
-    /* get full paths */
-    pathItems.forEach((item, index) => {
+    const pathsWithFullPaths = pathItems.map((item, index) => {
         const fullPath = getPathStart(index) + item + '/'
-        pathsWithFullPaths.push({
-            name: item,
-            path: fullPath
-        })
+        return {name: item, path: fullPath}
     })
 
     const breadcrumb = pathsWithFullPaths.map(item => (
@@ -36,11 +30,11 @@ const Breadcrumb = ({ path, selectedImageName, handleClick }) => {
                 <button onClick={() => handleClick('')}>All</button>
             </div>  
             {breadcrumb}
-            {selectedImageName && 
+            {selectedImageName && (
                 <div className="breadcrumb-item breadcrumb-image-name">
                     ><button>{selectedImageName}</button>
                 </div>
-            }
+            )}
         </div>
     )
 }
